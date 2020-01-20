@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>InFootball</title>
+  <meta charset="UTF-8" />
+  <meta name="description" content="My first PWA" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#42A5F5" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/materialize.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="shortcut icon" href="/images/icon-infootball-192.png">
+  <link rel="apple-touch-icon" href="/images/apple-icon-infootball-192.png">
+</head>
+
+<body style="overflow: auto">
+  <!-- Navigasi -->
+  <nav class="blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo" id="logo-container">InFootball</a>
+      <a href="#" class="sidenav-trigger" data-target="nav-mobile">&#9776;</a>
+
+      <ul class="topnav right hide-on-med-and-down"></ul>
+      <div class="sidenav blue" id="nav-mobile"></div>
+    </div>
+  </nav>
+  <!-- Akhir Navigasi -->
+
+  <div class="container" id="body-content"></div>
+
+  <script src="/js/materialize.min.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/register-sw.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/idb.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/sw.js"></script>
+
+  <script>
+    // REQUEST API UNTUK PERTAMA KALI
+    document.addEventListener("DOMContentLoaded", function () {
+      getStandings();
+    });
+  </script>
+</body>
+
+</html>

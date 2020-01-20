@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="My first PWA" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#42A5F5" />
+  <title>InFootball</title>
+  <link rel="stylesheet" href="/css/materialize.min.css" />
+  <link rel="manifest" href="/manifest.json" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/icon-infootball-192.png">
+  <link rel="apple-touch-icon" href="/images/apple-icon-infootball-192.png">
+</head>
+
+<body>
+  <!-- Navigasi -->
+  <nav class="blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo" id="logo-container">InFootball</a>
+      <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile">
+        <i class="material-icons">arrow_back</i>
+      </a>
+      <ul class="topnav right hide-on-med-and-down"></ul>
+      <ul class="sidenav" id="nav-mobile"></ul>
+    </div>
+  </nav>
+  <!-- Akhir Navigasi -->
+
+  <div class="container" id="body-content"></div>
+
+  <!-- Floating Action Button -->
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red" id="favorite">
+      <i class="large material-icons"></i>
+    </a>
+  </div>
+
+  <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+  <script src="/js/materialize.min.js"></script>
+  <script src="/register-sw.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/idb.js"></script>
+  <script src="/js/db.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      var urlParams = new URLSearchParams(window.location.search)
+      var idParam = urlParams.get('id')
+      var isFavorited = await getById(idParam)
+      var isFromFavorited = urlParams.get('favorited')
+      var btnFavorite = document.getElementById('favorite')
+      var iconFavorite = document.querySelector('#favorite > i.material-icons')
+
+
+      // getById
+      if (isFromFavorited) {
+        iconFavorite.innerHTML = 'favorite'
+        getFavoriteTeamById()
+      } else {
+        if (isFavorited) {
+          iconFavorite.innerHTML = 'favorite'
+        } else {
+          iconFavorite.innerHTML = 'favorite_border'
+        }
+        var item = getTeamById()
+      }
+      btnFavorite.onclick = async function () {
+        isFavorited = await getById(idParam)
+        if (isFavorited) {
+          M.toast({
+            html: "Dihapus dari tim favorit",
+            displayLength: 1000,
+          })
+          iconFavorite.innerHTML = 'favorite_border'
+          removeFromFavorites(idParam)
+        } else {
+          M.toast({
+            html: "Ditambahkan ke tim favorit",
+            displayLength: 1000,
+          })
+          iconFavorite.innerHTML = 'favorite'
+          item.then(function (team) {
+            addToFavorites(team)
+          })
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
