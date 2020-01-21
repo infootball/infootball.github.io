@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#42A5F5" />
   <title>InFootball</title>
   <link rel="stylesheet" href="/css/materialize.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
   <link rel="manifest" href="/manifest.json" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="shortcut icon" href="/images/icon-infootball-192.png">
@@ -15,6 +16,59 @@
 </head>
 
 <body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Navigasi -->
   <nav class="blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
@@ -66,6 +120,7 @@
         }
         var item = getTeamById()
       }
+
       btnFavorite.onclick = async function () {
         isFavorited = await getById(idParam)
         if (isFavorited) {

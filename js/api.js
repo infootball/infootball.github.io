@@ -198,6 +198,7 @@ standingsComp = (data) => {
   });
   // Sisipkan komponen card ke dalam elemen dengan id #standings
   document.getElementById("standings").innerHTML = headerStandingHTML + standingsHTML;
+  document.getElementById('preloader').style.display = 'none';
 }
 
 teamByIdComp = (data) => {
@@ -303,4 +304,5 @@ teamByIdComp = (data) => {
   `;
   // Sisipkan komponen card ke dalam elemen dengan id #content
   document.getElementById("body-content").innerHTML = teamHTML;
+  document.getElementById('preloader').style.display = 'none';
 }
