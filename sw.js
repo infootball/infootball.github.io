@@ -1,4 +1,4 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js')
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
 if (workbox) {
   console.log(`Yay! Workbox is loaded 🎉`)
@@ -28,7 +28,9 @@ var precacheArr = [
   '/js/idb.js',
 ]
 
-workbox.precaching.precacheAndRoute(precacheArr)
+workbox.precaching.precacheAndRoute(precacheArr, {
+  ignoreUrlParametersMatching: [/.*/]
+})
 
 workbox.routing.registerRoute(
   new RegExp('/pages/'),
@@ -38,33 +40,8 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  'https://api.football-data.org/v2/competitions/',
-  workbox.strategies.staleWhileRevalidate({
-    cacheName: 'standings',
-    plugins: [
-      new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200],
-      }),
-      new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 7,
-      }),
-    ],
-  })
-)
-
-workbox.routing.registerRoute(
-  'https://api.football-data.org/v2/teams/',
-  workbox.strategies.staleWhileRevalidate({
-    cacheName: 'teams',
-    plugins: [
-      new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200],
-      }),
-      new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 7,
-      }),
-    ],
-  })
+  new RegExp('https://api.football-data.org/v2/'),
+  workbox.strategies.cacheFirst()
 )
 
 self.addEventListener('push', function (event) {
