@@ -41,7 +41,16 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   new RegExp('https://api.football-data.org/v2/'),
-  workbox.strategies.cacheFirst()
+  workbox.strategies.staleWhileRevalidate({
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      }),
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 60 * 60 * 24 * 7,
+      }),
+    ],
+  })
 )
 
 self.addEventListener('push', function (event) {
