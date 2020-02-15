@@ -1,1 +1,39 @@
-
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "mat",
+      "fullname": "Rahmat Sulistio",
+    },
+    {
+      "id": 2,
+      "username": "fachri",
+      "fullname": "M. Infra Fachri Amin",
+    },
+    {
+      "id": 3,
+      "username": "willy",
+      "fullname": "Willy Andry Malau",
+    },
+    {
+      "id": 4,
+      "username": "rendy",
+      "fullname": "Rendi Andika",
+    },
+    {
+      "id": 5,
+      "username": "yazid",
+      "fullname": "Riskan Yazid",
+    },
+    {
+      "id": 6,
+      "username": "nabil",
+      "fullname": "M. Nabil Muttaqin",
+    },
+    {
+      "id": 7,
+      "username": "pop",
+      "fullname": "Vindi Pop",
+    }
+  ]
+}
